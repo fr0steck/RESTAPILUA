@@ -95,15 +95,14 @@ do
         product:delete()
         return "Deleted product: " .. tostring(product.product_name)
       end
-    }, {
-      ["/products_category/:category"] = respond_to({
-        GET = function(self)
-          local products = Products:select("where category = ? limit 10", self.params.category)
-          return {
-            json = products
-          }
-        end
-      })
+    }),
+    ["/products_category/:category"] = respond_to({
+      GET = function(self)
+        local products = Products:select("where category = ? limit 10", self.params.category)
+        return {
+          json = products
+        }
+      end
     }),
     ["/products_create"] = function(self)
       local product = Products:create({

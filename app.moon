@@ -35,7 +35,7 @@ class extends lapis.Application
             "Deleted product: #{product.product_name}"
     }
     
-   "/products_category/:category": respond_to {
+  "/products_category/:category": respond_to {
         GET: =>
             products = Products\select "where category = ? limit 10", @params.category
             json: products
